@@ -3,7 +3,7 @@ import { useAppKitAccount } from '@reown/appkit/react'
 export default function Header() {
   const { address, isConnected } = useAppKitAccount()
 
-  const formatAddress = (addr: string) => {
+  const formatAddress = (addr) => {
     return `${addr.slice(0, 6)}...${addr.slice(-4)}`
   }
 
@@ -26,7 +26,7 @@ export default function Header() {
             {isConnected && (
               <div className="hidden sm:flex items-center space-x-2 bg-dark px-4 py-2 rounded-lg">
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                <span className="text-sm text-gray-300">{formatAddress(address!)}</span>
+                <span className="text-sm text-gray-300">{address && formatAddress(address)}</span>
               </div>
             )}
             

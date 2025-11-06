@@ -1,11 +1,6 @@
-import { Token } from '../types'
+import PropTypes from 'prop-types'
 
-interface Props {
-  tokens: Token[]
-  loading: boolean
-}
-
-export default function TokenList({ tokens, loading }: Props) {
+export default function TokenList({ tokens, loading }) {
   if (loading) {
     return (
       <div className="bg-dark-lighter rounded-xl border border-gray-800 overflow-hidden">
@@ -28,7 +23,7 @@ export default function TokenList({ tokens, loading }: Props) {
     )
   }
 
-  if (tokens.length === 0) {
+  if (!tokens || tokens.length === 0) {
     return (
       <div className="bg-dark-lighter rounded-xl border border-gray-800 p-12 text-center">
         <div className="text-6xl mb-4">🪙</div>
@@ -62,7 +57,7 @@ export default function TokenList({ tokens, loading }: Props) {
               {/* Token Info */}
               <div className="md:col-span-4 flex items-center space-x-3">
                 <div className="w-10 h-10 bg-gradient-to-br from-primary to-purple-600 rounded-full flex items-center justify-center text-white font-bold">
-                  {token.symbol.slice(0, 2)}
+                  {token.symbol && token.symbol.slice(0, 2)}
                 </div>
                 <div>
                   <p className="font-semibold text-white">{token.symbol}</p>
@@ -120,4 +115,23 @@ export default function TokenList({ tokens, loading }: Props) {
       </div>
     </div>
   )
+}
+
+TokenList.propTypes = {
+  tokens: PropTypes.arrayOf(
+    PropTypes.shape({
+      symbol: PropTypes.string,
+      name: PropTypes.string,
+      balance: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      price: PropTypes.number,
+      value: PropTypes.number,
+      change24h: PropTypes.number,
+    })
+  ),
+  loading: PropTypes.bool,
+}
+
+TokenList.defaultProps = {
+  tokens: [],
+  loading: false,
 }

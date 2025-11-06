@@ -169,7 +169,7 @@ export function getNativeTokenSymbol(chainId) {
 // ===== components/Header.jsx =====
 import { useAppKitAccount } from '@reown/appkit/react'
 
-export default function Header() {
+export function Header() {
   const { address, isConnected } = useAppKitAccount()
 
   const formatAddress = (addr) => {
@@ -209,7 +209,7 @@ export default function Header() {
 
 
 // ===== components/PortfolioStats.jsx =====
-export default function PortfolioStats({ stats, loading }) {
+export function PortfolioStats({ stats, loading }) {
   if (loading) {
     return (
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
@@ -257,7 +257,7 @@ export default function PortfolioStats({ stats, loading }) {
 
 
 // ===== components/TokenList.jsx =====
-export default function TokenList({ tokens, loading }) {
+export function TokenList({ tokens, loading }) {
   if (loading) {
     return (
       <div className="bg-dark-lighter rounded-xl border border-gray-800 overflow-hidden">
@@ -379,7 +379,7 @@ export default function TokenList({ tokens, loading }) {
 import { useEffect, useState } from 'react'
 import { useAppKitAccount, useAppKitNetwork } from '@reown/appkit/react'
 import { useBalance } from 'wagmi'
-import Header from './components/Header'
+import { Header } from './components/Header'
 import PortfolioStats from './components/PortfolioStats'
 import TokenList from './components/TokenList'
 import { fetchTokenBalances, calculatePortfolioStats, getNativeTokenSymbol } from './utils/tokenService'

@@ -6,7 +6,9 @@ import App from './App'
 import './index.css'
 import { wagmiAdapter, queryClient } from './config'
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+const rootElement = document.getElementById('root');
+if (!rootElement) throw new Error('Root element not found');
+ReactDOM.createRoot(rootElement).render(
   <React.StrictMode>
     <WagmiProvider config={wagmiAdapter.wagmiConfig}>
       <QueryClientProvider client={queryClient}>

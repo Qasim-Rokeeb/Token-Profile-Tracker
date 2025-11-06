@@ -1,11 +1,7 @@
 import { PortfolioStats as Stats } from '../types'
+import PropTypes from 'prop-types'
 
-interface Props {
-  stats: Stats
-  loading: boolean
-}
-
-export default function PortfolioStats({ stats, loading }: Props) {
+export default function PortfolioStats({ stats, loading }) {
   if (loading) {
     return (
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
